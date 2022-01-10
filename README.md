@@ -31,8 +31,8 @@ In the project directory, you can run:
 ### `yarn dev`
 
 Runs the app in the development mode.\
-Open [http://localhost:3001](http://localhost:3001) to view it in your browser.
-Open [http://localhost:3001/graphql](http://localhost:3001/graphql) to view GraphQL interface in your browser.
+Open [http://localhost:3001](http://localhost:3001) to view it in your browser.\
+Open [http://localhost:3001/graphql](http://localhost:3001/graphql) to view GraphQL interface in your browser.\
 
 ### `yarn build`
 
