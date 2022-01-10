@@ -32,6 +32,12 @@ function ListOfUsers() {
                 </td>
               </tr>
             ))}
+            {
+              !data &&
+              (<tr>
+                <td colSpan={5}>No Data Found</td>
+              </tr>)
+            }
           </tbody>
         </table>
     </div>
