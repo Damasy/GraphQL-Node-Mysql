@@ -1,45 +1,52 @@
-import { useQuery } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import React from 'react'
+import { DELETE_USER } from '../Graphql/Mutations';
 import { GET_ALL_USERS } from '../Graphql/Quaries'
 
-function ListOfUsers() {
+function ListOfUsers({ newPassword }: any) {
   const {data, error} = useQuery(GET_ALL_USERS)
-  console.log(data)
-  if(error) return (<h1>Error Happened!</h1>)
+
+  const [deleteUser] = useMutation(DELETE_USER)
+
+  if(error) return (<h1>Error Happened!</h1>);
 
   return (
     <div>
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>name</th>
-              <th>username</th>
-              <th>password</th>
-              <th>actions</th>
+      <h2>List of users</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>name</th>
+            <th>username</th>
+            <th>password</th>
+            <th>actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data && data.getAllUsers.map((user: any) => (
+            <tr key={user.id}>
+              <td>{user.id}</td>
+              <td>{user.name}</td>
+              <td>{user.username}</td>
+              <td>{user.password}</td>
+              <td>
+                <button className='btn btn-danger' onClick={() => deleteUser({
+                  variables: {id: user.id}
+                })}>Delete</button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {data && data.getAllUsers.map((user: any) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.username}</td>
-                <td>{user.password}</td>
-                <td>
-                  <button className='btn btn-danger'>Delete</button>
-                  <button className='btn btn-primary'>Change Password</button>
-                </td>
-              </tr>
-            ))}
-            {
-              !data &&
-              (<tr>
-                <td colSpan={5}>No Data Found</td>
-              </tr>)
-            }
-          </tbody>
-        </table>
+          ))}
+          {
+            (data && !data.getAllUsers.length) &&
+            (<tr>
+              <td className='text-center' colSpan={5}>
+                <strong>No Data Found</strong>
+              </td>
+            </tr>)
+          }
+        </tbody>
+      </table>
     </div>
   )
 }

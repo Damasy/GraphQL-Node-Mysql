@@ -59,3 +59,7 @@ tbody tr:hover {
   background-color: #dc3545;
   border-color: #dc3545;
 }
+
+.text-center {
+  text-align: center;
+}
