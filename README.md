@@ -36,4 +36,4 @@ Open [http://localhost:3001/graphql](http://localhost:3001/graphql) to view Grap
 
 ### `yarn build`
 
-Builds the app for production to the `dist` folder.\
+Builds the app for production to the `dist` folder.
