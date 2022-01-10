@@ -12,6 +12,7 @@ function CreateUser() {
   if(error) return (<h1>Error Happened</h1>)
   return (
     <div className='createUser'>
+      <h2>Create user</h2>
       <input type="text" placeholder='name'
         onChange={(e) => {
           setName(e.target.value)
